@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Insurance | BeemaDukan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .details-hero { padding: 180px 0 100px; text-align: center; background: radial-gradient(circle at top, rgba(139, 92, 246, 0.15) 0%, transparent 60%); border-bottom: 1px solid var(--glass-border); }
+    .details-hero h1 { font-size: 3.5rem; font-family: 'Manrope', sans-serif; font-weight: 800; margin-bottom: 24px; line-height: 1.1; }
+    .details-hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 600px; margin: 0 auto 40px; line-height: 1.6; }
+    .info-section { padding: 120px 0; }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+    .info-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px; text-align: left; }
+    .info-card i { font-size: 2.5rem; color: #8B5CF6; margin-bottom: 24px; display: block; }
+    .info-card h3 { font-size: 1.5rem; margin-bottom: 16px; font-family: 'Manrope', sans-serif; }
+    .info-card p { color: var(--text-dim); line-height: 1.6; margin-bottom: 24px; }
+    .info-features { list-style: none; padding: 0; margin: 0; }
+    .info-features li { display: flex; align-items: center; gap: 12px; color: var(--text); margin-bottom: 12px; font-size: 0.95rem; }
+    .info-features li i { font-size: 1.2rem; color: #10B981; margin: 0; }
+    #price-travel { display: grid !important; }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+          <path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#shieldGrad)"/>
+          <path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs><linearGradient id="shieldGrad" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs>
+        </svg>
+        Beema<span class="logo-accent">Dukan</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#categories">Insurance</a></li>
+        <li><a href="index.html#claims">Claims</a></li>
+        <li><a href="index.html#calculator">Calculator</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Support</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-ghost">Login</a>
+        <button class="btn-primary btn-glow" id="getProtectedBtn">Get Protected</button>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="details-hero">
+    <div class="container">
+      <div class="section-tag" style="margin: 0 auto 20px;">Travel Insurance</div>
+      <h1 data-anim="fade-up">Explore Without <span class="gradient-text">Boundaries</span></h1>
+      <p data-anim="fade-up" style="transition-delay: 0.1s;">Travel worry-free with global coverage for medical emergencies, trip cancellations, and baggage protection.</p>
+      <div style="display: flex; gap: 16px; justify-content: center;" data-anim="fade-up" style="transition-delay: 0.2s;">
+        <a href="#pricing" class="btn-primary btn-glow">View Plans</a>
+        <a href="index.html#calculator" class="btn-ghost" style="border: 1px solid var(--glass-border); border-radius: 8px;">Calculate Premium</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="section-header" data-anim="fade-up">
+        <h2>Understanding <span class="gradient-text">Travel Insurance</span></h2>
+        <p>Whether it is a short business trip or a worldwide adventure, we have you covered.</p>
+      </div>
+      <div class="info-grid">
+        
+        <div class="info-card" data-anim="fade-up"><i class="ph-fill ph-airplane-tilt"></i><h3>Single Trip</h3><p>Perfect for vacations. Covers emergency medical expenses, trip delays, and lost luggage for your specific journey.</p><ul class="info-features"><li><i class="ph-fill ph-check-circle"></i> Duration-based pricing</li><li><i class="ph-fill ph-check-circle"></i> 24/7 global support</li><li><i class="ph-fill ph-check-circle"></i> Flight delay cover</li></ul></div>
+        <div class="info-card" data-anim="fade-up" style="transition-delay: 0.1s;"><i class="ph-fill ph-globe"></i><h3>Multi-Trip Annual</h3><p>For the frequent flyer. One policy that covers all your international and domestic trips throughout the year.</p><ul class="info-features"><li><i class="ph-fill ph-check-circle"></i> Unlimited trips</li><li><i class="ph-fill ph-check-circle"></i> Highly cost-effective</li><li><i class="ph-fill ph-check-circle"></i> Auto-renewal</li></ul></div>
+        <div class="info-card" data-anim="fade-up" style="transition-delay: 0.2s;"><i class="ph-fill ph-student"></i><h3>Student Travel</h3><p>Specially designed for students studying abroad. Includes sponsor protection and study interruption benefits.</p><ul class="info-features"><li><i class="ph-fill ph-check-circle"></i> University compliant</li><li><i class="ph-fill ph-check-circle"></i> Tuition fee cover</li><li><i class="ph-fill ph-check-circle"></i> Sponsor protection</li></ul></div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section" id="pricing" style="background: rgba(255,255,255,0.012);">
+    <div class="container">
+      <div class="section-header" data-anim="fade-up">
+        <span class="section-tag">Plans</span>
+        <h2>Choose Your <span class="gradient-text">Protection</span></h2>
+      </div>
+      <div class="pricing-controls" data-anim="fade-up">
+        <div class="billing-toggle">
+          <span class="bill-label">Monthly</span>
+          <label class="switch">
+            <input type="checkbox" id="billingSwitch" checked>
+            <span class="slider"></span>
+          </label>
+          <span class="bill-label">Yearly <span class="badge-save">Save 20%</span></span>
+        </div>
+      </div>
+      
+      
+      <div class="pricing-grid" id="price-travel">
+        <div class="price-card glass-card">
+          <div class="pc-top"><i class="ph-fill ph-airplane-in-flight"></i><h3>Asia Explorer</h3></div>
+          <div class="pc-price"><span class="currency">NPR</span><span class="amount" data-monthly="800" data-yearly="800">800</span><span class="period">/trip</span></div>
+          <ul class="pc-features">
+            <li><i class="ph-fill ph-check-circle"></i> Asia-wide medical cover</li>
+            <li><i class="ph-fill ph-check-circle"></i> Baggage loss protection</li>
+            <li><i class="ph-fill ph-check-circle"></i> Flight delay compensation</li>
+          </ul>
+          <button class="btn-outline w-100">Choose Plan</button>
+        </div>
+        <div class="price-card glass-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pc-top"><i class="ph-fill ph-globe-hemisphere-west"></i><h3>Global Premium</h3></div>
+          <div class="pc-price"><span class="currency">NPR</span><span class="amount" data-monthly="2500" data-yearly="2500">2,500</span><span class="period">/trip</span></div>
+          <ul class="pc-features">
+            <li><i class="ph-fill ph-check-circle"></i> Worldwide (Incl. USA/CAN)</li>
+            <li><i class="ph-fill ph-check-circle"></i> High medical limit ($500k)</li>
+            <li><i class="ph-fill ph-check-circle"></i> Trip cancellation cover</li>
+          </ul>
+          <button class="btn-primary w-100">Choose Plan</button>
+        </div>
+        <div class="price-card glass-card" style="visibility:hidden"></div>
+      </div>
+        
+      
+      <div class="pricing-disclaimer">*Pricing shown is estimated and may vary based on specific policy details.</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html#hero" class="logo">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#fg)"/><path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="fg" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs></svg>
+            Beema<span class="logo-accent">Dukan</span>
+          </a>
+          <p>Making insurance simple, transparent, and accessible for every Nepali.</p>
+        </div>
+        <div class="footer-col"><h4>Insurance</h4><ul>
+          <li><a href="health-insurance.html">Health Insurance</a></li>
+          <li><a href="life-insurance.html">Life Insurance</a></li>
+          <li><a href="vehicle-insurance.html">Vehicle Insurance</a></li>
+          <li><a href="travel-insurance.html">Travel Insurance</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Company</h4><ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html#testimonials">Reviews</a></li>
+          <li><a href="index.html#comparison">Why Us</a></li>
+          <li><a href="contact.html">Careers</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <div class="trust-strip">
+          <span><i class="ph-fill ph-shield-check"></i> Beema Pradhikaran Approved</span>
+          <span><i class="ph-fill ph-lock-key"></i> 256-bit SSL Secure</span>
+        </div>
+        <div class="footer-legal">
+          <p>&copy; 2026 BeemaDukan. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

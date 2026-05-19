@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Insurance | BeemaDukan</title>
+  <meta name="description" content="Secure your family's future with our comprehensive life insurance plans.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Details Hero */
+    .details-hero {
+      padding: 180px 0 100px;
+      text-align: center;
+      background: radial-gradient(circle at top, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .details-hero h1 {
+      font-size: 3.5rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+    .details-hero p {
+      font-size: 1.2rem;
+      color: var(--text-dim);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+    /* Info Grid */
+    .info-section {
+      padding: 120px 0;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+    .info-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: left;
+    }
+    .info-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 24px;
+      display: block;
+    }
+    .info-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      font-family: 'Manrope', sans-serif;
+    }
+    .info-card p {
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .info-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .info-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+    .info-features li i {
+      font-size: 1.2rem;
+      color: #10B981;
+      margin: 0;
+    }
+    /* Override pricing grid active for this page since there are no tabs */
+    #price-life {
+      display: grid !important;
+    }
+
+    /* Compare Table Styles */
+    .compare-insurers-table td, .compare-insurers-table th {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.95rem;
+      vertical-align: middle;
+    }
+    .compare-insurers-table th {
+      font-family: 'Manrope', sans-serif;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+    .compare-insurers-table tr:hover td {
+      background: rgba(255,255,255,0.02);
+    }
+    .insurer-name {
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Manrope', sans-serif;
+    }
+    .insurer-logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 10px rgba(16,185,129,0.5);
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--primary);
+      background: rgba(37,99,235,0.15);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(37,99,235,0.25);
+    }
+    .badge-feature {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      background: rgba(16,185,129,0.1);
+      color: #10B981;
+      margin-left: 8px;
+      font-weight: 600;
+    }
+
+    /* Drawer Styles */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 17, 32, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer-card {
+      width: 100%;
+      max-width: 480px;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+      padding: 40px 32px;
+      position: relative;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .drawer-overlay.active .drawer-card {
+      transform: translateX(0);
+    }
+    .drawer-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-dim);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1.2rem;
+    }
+    .drawer-close:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .drawer-content {
+      margin-top: 30px;
+      flex: 1;
+    }
+    .drawer-header {
+      margin-bottom: 24px;
+    }
+    .drawer-header i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .drawer-header h2 {
+      font-size: 1.8rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .drawer-price {
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .drawer-section {
+      margin-bottom: 24px;
+    }
+    .drawer-section h4 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #fff;
+      margin-bottom: 12px;
+      font-family: 'Manrope', sans-serif;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 6px;
+    }
+    .drawer-section p {
+      color: var(--text-dim);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .drawer-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .drawer-table td {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.95rem;
+    }
+    .drawer-table td:first-child {
+      color: var(--text-dim);
+    }
+    .drawer-table td:last-child {
+      text-align: right;
+      font-weight: 600;
+      color: #fff;
+    }
+    .drawer-benefits {
+      list-style: none;
+      padding: 0;
+    }
+    .drawer-benefits li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--text-dim);
+    }
+    .drawer-benefits li i {
+      color: #10B981;
+      font-size: 1.1rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+          <path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#shieldGrad)"/>
+          <path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs><linearGradient id="shieldGrad" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs>
+        </svg>
+        Beema<span class="logo-accent">Dukan</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#categories">Insurance</a></li>
+        <li><a href="index.html#claims">Claims</a></li>
+        <li><a href="index.html#calculator">Calculator</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Support</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-ghost">Login</a>
+        <button class="btn-primary btn-glow" id="getProtectedBtn">Get Protected</button>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- DETAILS HERO -->
+  <section class="details-hero">
+    <div class="container">
+      <div class="section-tag" style="margin: 0 auto 20px;">Life Insurance</div>
+      <h1 data-anim="fade-up">Secure Your Family's <span class="gradient-text">Future</span></h1>
+      <p data-anim="fade-up" style="transition-delay: 0.1s;">Comprehensive life cover to ensure your family's financial stability, no matter what happens. Simple, transparent, and built for your peace of mind.</p>
+      <div style="display: flex; gap: 16px; justify-content: center;" data-anim="fade-up" style="transition-delay: 0.2s;">
+        <a href="#pricing" class="btn-primary btn-glow">View Plans</a>
+        <a href="index.html#calculator" class="btn-ghost" style="border: 1px solid var(--glass-border); border-radius: 8px;">Calculate Premium</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPES OF LIFE INSURANCE -->
+  <section class="info-section">
+    <div class="container">
+      <div class="section-header" data-anim="fade-up">
+        <h2>Our Specialized <span class="gradient-text">Life Policies</span></h2>
+        <p>Explore, compare, and select from our high-performance life and savings insurance plans tailored for your family's protection.</p>
+      </div>
+      
+      <div class="info-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        <!-- Child Policy -->
+        <div class="info-card" data-policy="cp" data-anim="fade-up" style="cursor: pointer;">
+          <i class="ph-fill ph-baby"></i>
+          <h3>Child Policy (CP)</h3>
+          <p>A special insurance plan to ensure the future of children, covering risks of both proposer and child.</p>
+          <div class="policy-price-tag" style="font-weight: 600; color: var(--accent); margin-bottom: 16px;">Starting @ रु410/year</div>
+          <ul class="info-features">
+            <li><i class="ph-fill ph-check-circle"></i> Child education safety</li>
+            <li><i class="ph-fill ph-check-circle"></i> Dual risk coverage</li>
+          </ul>
+        </div>
+        
+        <!-- Endowment Policy -->
+        <div class="info-card" data-policy="ep" data-anim="fade-up" style="transition-delay: 0.05s; cursor: pointer;">
+          <i class="ph-fill ph-piggy-bank"></i>
+          <h3>Endowment Policy (EP)</h3>
+          <p>Ideal protection and savings plan providing financial security while encouraging regular savings.</p>
+          <div class="policy-price-tag" style="font-weight: 600; color: var(--accent); margin-bottom: 16px;">Starting @ रु500/year</div>
+          <ul class="info-features">
+            <li><i class="ph-fill ph-check-circle"></i> Guaranteed savings returns</li>
+            <li><i class="ph-fill ph-check-circle"></i> Life risk cover included</li>
+          </ul>
+        </div>
+        
+        <!-- Whole Life Policy -->
+        <div class="info-card" data-policy="wlp" data-anim="fade-up" style="transition-delay: 0.1s; cursor: pointer;">
+          <i class="ph-fill ph-calendar-check"></i>
+          <h3>Whole Life Policy (WLP)</h3>
+          <p>Lifelong protection with death benefits up to age 100, even after premium payment period ends.</p>
+          <div class="policy-price-tag" style="font-weight: 600; color: var(--accent); margin-bottom: 16px;">Starting @ रु410/year</div>
+          <ul class="info-features">
+            <li><i class="ph-fill ph-check-circle"></i> Coverage up to age 100</li>
+            <li><i class="ph-fill ph-check-circle"></i> Legacy for family</li>
+          </ul>
+        </div>
+
+        <!-- Limited Endowment Policy -->
+        <div class="info-card" data-policy="lep" data-anim="fade-up" style="transition-delay: 0.15s; cursor: pointer;">
+          <i class="ph-fill ph-hourglass-high"></i>
+          <h3>Limited Endowment Policy (LEP)</h3>
+          <p>Long-term insurance with limited premium payment period while coverage extends throughout entire term.</p>
+          <div class="policy-price-tag" style="font-weight: 600; color: var(--accent); margin-bottom: 16px;">Starting @ रु625/month</div>
+          <ul class="info-features">
+            <li><i class="ph-fill ph-check-circle"></i> Short pay, long cover</li>
+            <li><i class="ph-fill ph-check-circle"></i> Flexible payment terms</li>
+          </ul>
+        </div>
+
+        <!-- Endowment Cum Term Policy -->
+        <div class="info-card" data-policy="etp" data-anim="fade-up" style="transition-delay: 0.2s; cursor: pointer;">
+          <i class="ph-fill ph-scales"></i>
+          <h3>Endowment Cum Term Policy (ETP)</h3>
+          <p>Combined endowment and term insurance providing enhanced death benefits with savings component.</p>
+          <div class="policy-price-tag" style="font-weight: 600; color: var(--accent); margin-bottom: 16px;">Starting @ रु375/year</div>
+          <ul class="info-features">
+            <li><i class="ph-fill ph-check-circle"></i> High death benefits</li>
+            <li><i class="ph-fill ph-check-circle"></i> Integrated savings build</li>
+          </ul>
+        </div>
+
+        <!-- Whole Cum Term Policy -->
+        <div class="info-card" data-policy="wtp" data-anim="fade-up" style="transition-delay: 0.25s; cursor: pointer;">
+          <i class="ph-fill ph-shield-check"></i>
+          <h3>Whole Cum Term Policy (WTP)</h3>
+          <p>Combines whole life benefits with term insurance for enhanced protection and lifelong coverage.</p>
+          <div class="policy-price-tag" style="font-weight: 600; color: var(--accent); margin-bottom: 16px;">Starting @ रु455/month</div>
+          <ul class="info-features">
+            <li><i class="ph-fill ph-check-circle"></i> Hybrid protection plan</li>
+            <li><i class="ph-fill ph-check-circle"></i> Enhanced life cover</li>
+          </ul>
+        </div>
+
+        <!-- Limited Endowment Cum Term Policy -->
+        <div class="info-card" data-policy="letp" data-anim="fade-up" style="transition-delay: 0.3s; cursor: pointer;">
+          <i class="ph-fill ph-hand-coins"></i>
+          <h3>Limited Endowment Cum Term Policy (LETP)</h3>
+          <p>Limited premium payment with enhanced endowment and term coverage combination.</p>
+          <div class="policy-price-tag" style="font-weight: 600; color: var(--accent); margin-bottom: 16px;">Starting @ रु670/month</div>
+          <ul class="info-features">
+            <li><i class="ph-fill ph-check-circle"></i> Dual cover combination</li>
+            <li><i class="ph-fill ph-check-circle"></i> Limited payment duration</li>
+          </ul>
+        </div>
+
+        <!-- Endowment Cum Term With Medical Policy -->
+        <div class="info-card" data-policy="etmp" data-anim="fade-up" style="transition-delay: 0.35s; cursor: pointer;">
+          <i class="ph-fill ph-heartbeat"></i>
+          <h3>Endowment Cum Term With Medical Policy (ETMP)</h3>
+          <p>Comprehensive coverage combining endowment, term, and medical benefits with health insurance.</p>
+          <div class="policy-price-tag" style="font-weight: 600; color: var(--accent); margin-bottom: 16px;">Starting @ रु405/month</div>
+          <ul class="info-features">
+            <li><i class="ph-fill ph-check-circle"></i> Inpatient medical benefit</li>
+            <li><i class="ph-fill ph-check-circle"></i> 3-in-1 combo security</li>
+          </ul>
+        </div>
+
+        <!-- Whole Cum Term With Medical Policy -->
+        <div class="info-card" data-policy="wtmp" data-anim="fade-up" style="transition-delay: 0.4s; cursor: pointer;">
+          <i class="ph-fill ph-first-aid"></i>
+          <h3>Whole Cum Term With Medical Policy (WTMP)</h3>
+          <p>Ultimate protection combining lifelong whole life coverage, term enhancement, and comprehensive medical benefits.</p>
+          <div class="policy-price-tag" style="font-weight: 600; color: var(--accent); margin-bottom: 16px;">Starting @ रु485/year</div>
+          <ul class="info-features">
+            <li><i class="ph-fill ph-check-circle"></i> Lifelong medical cover</li>
+            <li><i class="ph-fill ph-check-circle"></i> Maximum combined riders</li>
+          </ul>
+        </div>
+
+        <!-- Limited Endowment Cum Term With Medical Policy -->
+        <div class="info-card" data-policy="letmp" data-anim="fade-up" style="transition-delay: 0.45s; cursor: pointer;">
+          <i class="ph-fill ph-medal"></i>
+          <h3>Limited Endowment Cum Term With Medical Policy (LETMP)</h3>
+          <p>Premium policy with limited payments for comprehensive endowment, term, and medical benefits.</p>
+          <div class="policy-price-tag" style="font-weight: 600; color: var(--accent); margin-bottom: 16px;">Starting @ रु700/year</div>
+          <ul class="info-features">
+            <li><i class="ph-fill ph-check-circle"></i> Premium savings structure</li>
+            <li><i class="ph-fill ph-check-circle"></i> Advanced health riders</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SECTION -->
+  <section class="pricing-section" id="pricing" style="background: rgba(255,255,255,0.012);">
+    <div class="container">
+      <div class="section-header" data-anim="fade-up">
+        <span class="section-tag">Life Plans</span>
+        <h2>Choose Your <span class="gradient-text">Protection</span></h2>
+        <p>Select a plan that secures your family's future.</p>
+      </div>
+
+      <div class="pricing-controls" data-anim="fade-up">
+        <div class="billing-toggle">
+          <span class="bill-label">Monthly</span>
+          <label class="switch">
+            <input type="checkbox" id="billingSwitch" checked>
+            <span class="slider"></span>
+          </label>
+          <span class="bill-label">Yearly <span class="badge-save">Save 20%</span></span>
+        </div>
+      </div>
+
+      <!-- LIFE PLANS ONLY -->
+      <div class="pricing-grid" id="price-life">
+        <div class="price-card glass-card" data-anim="fade-up">
+          <div class="pc-top"><i class="ph-fill ph-shield-heart"></i><h3>SecureLife</h3></div>
+          <div class="pc-price"><span class="currency">NPR</span><span class="amount" data-monthly="4000" data-yearly="40000">40,000</span><span class="period">/year</span></div>
+          <ul class="pc-features">
+            <li><i class="ph-fill ph-check-circle"></i> Family financial support</li>
+            <li><i class="ph-fill ph-check-circle"></i> रु1Cr Term Cover</li>
+            <li><i class="ph-fill ph-check-circle"></i> Terminal illness benefit</li>
+          </ul>
+          <button class="btn-outline w-100">Choose Plan</button>
+        </div>
+        <div class="price-card glass-card popular" data-anim="fade-up" style="transition-delay: 0.1s;">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pc-top"><i class="ph-fill ph-heartbeat"></i><h3>LifeGuard Plus</h3></div>
+          <div class="pc-price"><span class="currency">NPR</span><span class="amount" data-monthly="8000" data-yearly="80000">80,000</span><span class="period">/year</span></div>
+          <ul class="pc-features">
+            <li><i class="ph-fill ph-check-circle"></i> Long-term protection</li>
+            <li><i class="ph-fill ph-check-circle"></i> Return of premium</li>
+            <li><i class="ph-fill ph-check-circle"></i> Accidental rider included</li>
+          </ul>
+          <button class="btn-primary w-100">Choose Plan</button>
+        </div>
+        <div class="price-card glass-card" style="visibility:hidden"></div>
+      </div>
+
+      <!-- COMPARATIVE INSURERS TABLE -->
+      <div class="comparison-table-wrapper glass-card" style="margin-top: 60px; overflow-x: auto; padding: 32px;" data-anim="fade-up">
+        <h3 style="font-size: 1.5rem; margin-bottom: 24px; font-family: 'Manrope', sans-serif; color: #fff;">Compare Life Insurers & Settlement Rates Side-by-Side</h3>
+        
+        <!-- Filter Controls -->
+        <div class="table-filters" style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+          <button class="filter-btn active" data-filter="all">All Insurers</button>
+          <button class="filter-btn" data-filter="high-csr">Top Settlement (>97%)</button>
+          <button class="filter-btn" data-filter="large-volume">Over 1M Active Policies</button>
+          <button class="filter-btn" data-filter="low-price">Lowest Price First</button>
+        </div>
+
+        <table class="compare-insurers-table" style="width: 100%; border-collapse: collapse; min-width: 600px;">
+          <thead>
+            <tr style="border-bottom: 2px solid rgba(255,255,255,0.08); text-align: left;">
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Insurer</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Claim Settlement Ratio</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Active Policies</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Starting Premium</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600; text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="lifeInsurersTableBody">
+            <!-- Dynamic rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <script>
+        const lifeInsurers = [
+          { name: "Nepal Life Insurance", csr: 98.2, active: 1200000, premium: 600, features: ["High Bonus", "CI Rider"] },
+          { name: "National Life Insurance", csr: 96.5, active: 950000, premium: 550, features: ["Premium Waiver"] },
+          { name: "LIC Nepal", csr: 97.8, active: 1100000, premium: 650, features: ["Guaranteed Return"] },
+          { name: "Himalayan Life", csr: 94.1, active: 620000, premium: 500, features: ["Term Rider"] }
+        ];
+
+        function renderLifeInsurers(data) {
+          const tbody = document.getElementById('lifeInsurersTableBody');
+          tbody.innerHTML = '';
+          data.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>
+                <div class="insurer-name">
+                  <div class="insurer-logo-dot"></div>
+                  <span>${item.name}</span>
+                  ${item.features.map(f => `<span class="badge-feature">${f}</span>`).join('')}
+                </div>
+              </td>
+              <td style="font-weight: 600; color: #fff;">${item.csr}%</td>
+              <td>${new Intl.NumberFormat('en-IN').format(item.active)} Policies</td>
+              <td style="font-weight: 700; color: var(--accent);">रु${new Intl.NumberFormat('en-IN').format(item.premium)}/mo</td>
+              <td style="text-align: right;"><button class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem;" onclick="window.location.href='contact.html?subject=Quote%20Request:%20Life%20Plan%20from%20${encodeURIComponent(item.name)}'">Get Quote</button></td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+          renderLifeInsurers(lifeInsurers);
+
+          document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+
+              const filter = btn.getAttribute('data-filter');
+              let filtered = [...lifeInsurers];
+
+              if (filter === 'high-csr') {
+                filtered = filtered.filter(x => x.csr > 97);
+              } else if (filter === 'large-volume') {
+                filtered = filtered.filter(x => x.active >= 1000000);
+              } else if (filter === 'low-price') {
+                filtered.sort((a, b) => a.premium - b.premium);
+              }
+
+              renderLifeInsurers(filtered);
+            });
+          });
+        });
+      </script>
+
+      <div class="pricing-disclaimer">*Pricing shown is estimated and may vary based on age, policy duration, and risk profile.</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html#hero" class="logo">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#fg)"/><path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="fg" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs></svg>
+            Beema<span class="logo-accent">Dukan</span>
+          </a>
+          <p>Making insurance simple, transparent, and accessible for every Nepali.</p>
+        </div>
+        <div class="footer-col"><h4>Insurance</h4><ul>
+          <li><a href="index.html#categories">Health Insurance</a></li>
+          <li><a href="#">Life Insurance</a></li>
+          <li><a href="index.html#categories">Vehicle Insurance</a></li>
+          <li><a href="index.html#categories">Travel Insurance</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Company</h4><ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html#testimonials">Reviews</a></li>
+          <li><a href="index.html#comparison">Why Us</a></li>
+          <li><a href="contact.html">Careers</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <div class="trust-strip">
+          <span><i class="ph-fill ph-shield-check"></i> Beema Pradhikaran Approved</span>
+          <span><i class="ph-fill ph-lock-key"></i> 256-bit SSL Secure</span>
+        </div>
+        <div class="footer-legal">
+          <p>&copy; 2026 BeemaDukan. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- POLICY DETAIL DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay">
+    <div class="drawer-card" id="drawerCard">
+      <button class="drawer-close" id="drawerClose"><i class="ph-bold ph-x"></i></button>
+      <div class="drawer-content" id="drawerContent">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const policyDetails = {
+      cp: {
+        title: "Child Policy (CP)",
+        icon: "ph-baby",
+        price: "Starting @ रु410/year",
+        desc: "A dedicated savings-cum-protection plan designed to build a financial safety net for your child's education and marriage milestones. If anything happens to the parent, all future premiums are waived, and the child still receives the full maturity benefit.",
+        eligibility: [
+          { label: "Min Entry Age (Child)", value: "1 Month" },
+          { label: "Max Entry Age (Child)", value: "15 Years" },
+          { label: "Min Age (Proposer)", value: "18 Years" },
+          { label: "Policy Term", value: "5 to 25 Years" }
+        ],
+        benefits: [
+          "Premium Waiver Benefit: In case of proposer's death, future premiums are waived immediately.",
+          "Milestone Payouts: Guaranteed payouts at key child ages (16, 18, 20, 22) for education.",
+          "Tax Benefits: Enjoy tax exemptions on premium payments and maturity amounts."
+        ]
+      },
+      ep: {
+        title: "Endowment Policy (EP)",
+        icon: "ph-piggy-bank",
+        price: "Starting @ रु500/year",
+        desc: "The classic blend of risk coverage and savings. You make regular premium payments over a set duration, building a lump sum. At maturity, you receive the full sum assured plus accumulated bonuses. If the worst happens, the sum is paid to your family.",
+        eligibility: [
+          { label: "Min Entry Age", value: "16 Years" },
+          { label: "Max Entry Age", value: "60 Years" },
+          { label: "Maturity Age Limit", value: "70 Years" },
+          { label: "Policy Term", value: "10 to 30 Years" }
+        ],
+        benefits: [
+          "Guaranteed Maturity: Receive full sum assured + declared bonuses at term end.",
+          "Loan Facility: Take a low-interest loan against your policy after 3 paid years.",
+          "Double Death Benefit: Accidental death rider pays double sum assured to nominee."
+        ]
+      },
+      wlp: {
+        title: "Whole Life Policy (WLP)",
+        icon: "ph-calendar-check",
+        price: "Starting @ रु410/year",
+        desc: "A lifetime safety commitment. You pay premiums for a selected duration, but the coverage continues up to age 100. This is the ultimate tool to construct a significant, tax-free legacy for your descendants.",
+        eligibility: [
+          { label: "Min Entry Age", value: "18 Years" },
+          { label: "Max Entry Age", value: "55 Years" },
+          { label: "Policy Term", value: "Up to Age 100" },
+          { label: "Premium Payment Term", value: "10, 15, or 20 Years" }
+        ],
+        benefits: [
+          "Lifelong Assurance: Financial protection remains active all the way to age 100.",
+          "Tax-Free Legacy: Build a completely tax-free legacy for your children.",
+          "Cash Value Build: Policy gathers cash value over time, redeemable or loanable."
+        ]
+      },
+      lep: {
+        title: "Limited Endowment Policy (LEP)",
+        icon: "ph-hourglass-high",
+        price: "Starting @ रु625/month",
+        desc: "An endowment savings plan with a short premium commitment. You pay premiums for a limited term (e.g. 5 or 10 years), but enjoy security and investment build for a much longer policy term (e.g. 15 or 20 years).",
+        eligibility: [
+          { label: "Min Entry Age", value: "16 Years" },
+          { label: "Max Entry Age", value: "60 Years" },
+          { label: "Premium Term", value: "5 / 10 / 15 Years" },
+          { label: "Policy Term", value: "10 to 25 Years" }
+        ],
+        benefits: [
+          "Short Commitments: Pay premiums quickly without long-term payment worries.",
+          "Continuous Growth: Your money continues to compound after premium term ends.",
+          "Surrender Value: Easily liquidable after premium term is completed."
+        ]
+      },
+      etp: {
+        title: "Endowment Cum Term Policy (ETP)",
+        icon: "ph-scales",
+        price: "Starting @ रु375/year",
+        desc: "A hybrid policy offering the benefits of an endowment plan combined with a term protection rider. It ensures a substantial safety payout for high protection requirements, while retaining a basic maturity return.",
+        eligibility: [
+          { label: "Min Entry Age", value: "18 Years" },
+          { label: "Max Entry Age", value: "55 Years" },
+          { label: "Maturity Age Limit", value: "65 Years" },
+          { label: "Policy Term", value: "15 to 25 Years" }
+        ],
+        benefits: [
+          "High Sum Assured: Enhanced protection loading due to term component.",
+          "Flexible Design: Ideal for primary breadwinners supporting multiple dependents.",
+          "Survival Bonus: Receive standard payouts if you survive the term."
+        ]
+      },
+      wtp: {
+        title: "Whole Cum Term Policy (WTP)",
+        icon: "ph-shield-check",
+        price: "Starting @ रु455/month",
+        desc: "A hybrid life policy providing term cover enhancement alongside a whole life framework. Perfect for young families seeking maximized security during their active working years, while retaining lifetime coverage afterwards.",
+        eligibility: [
+          { label: "Min Entry Age", value: "18 Years" },
+          { label: "Max Entry Age", value: "50 Years" },
+          { label: "Policy Term", value: "Lifetime (to age 100)" },
+          { label: "Payment Term", value: "15, 20, 25 Years" }
+        ],
+        benefits: [
+          "Double Coverage Window: High protection during career, base cover lifelong.",
+          "Maturity Dividends: Receive annual dividends during the premium payment term.",
+          "Rider Integration: Seamlessly add critical illness and disability options."
+        ]
+      },
+      letp: {
+        title: "Limited Endowment Cum Term Policy (LETP)",
+        icon: "ph-hand-coins",
+        price: "Starting @ रु670/month",
+        desc: "A comprehensive solution combining limited premium durations with joint endowment and term coverage. Ensures maximum financial protection in early years with minimal premium payment duration.",
+        eligibility: [
+          { label: "Min Entry Age", value: "18 Years" },
+          { label: "Max Entry Age", value: "55 Years" },
+          { label: "Premium Payment", value: "5 or 10 Years" },
+          { label: "Policy Term", value: "15 to 25 Years" }
+        ],
+        benefits: [
+          "Accelerated Savings: Grow wealth rapidly with brief premium commitments.",
+          "Enhanced Shield: Joint protection multipliers during early family building.",
+          "Milestone Maturity: Large lump sum payout for major retirement goals."
+        ]
+      },
+      etmp: {
+        title: "Endowment Cum Term With Medical Policy (ETMP)",
+        icon: "ph-heartbeat",
+        price: "Starting @ रु405/month",
+        desc: "A unique 3-in-1 combo policy. Combines endowment savings, term protection, and inpatient medical hospitalization reimbursement. Your premium secures both family legacy and medical bills.",
+        eligibility: [
+          { label: "Min Entry Age", value: "18 Years" },
+          { label: "Max Entry Age", value: "50 Years" },
+          { label: "Medical Checkup", value: "Required above age 45" },
+          { label: "Hospital Network", value: "Cashless in 500+ Nepalese clinics" }
+        ],
+        benefits: [
+          "Cashless Hospitalization: Cover medical bills dynamically without withdrawals.",
+          "Savings Build: Life premium still returns a lump sum on survival.",
+          "Broad Hospital Cover: Access premium care rooms across major urban areas."
+        ]
+      },
+      wtmp: {
+        title: "Whole Cum Term With Medical Policy (WTMP)",
+        icon: "ph-first-aid",
+        price: "Starting @ रु485/year",
+        desc: "The ultimate lifelong security plan. Includes whole life coverage to age 100, high-value term cover, and senior-focused medical riders. Perfect for people wanting single-policy health and death cover for life.",
+        eligibility: [
+          { label: "Min Entry Age", value: "18 Years" },
+          { label: "Max Entry Age", value: "50 Years" },
+          { label: "Health Declaration", value: "Required for all entrants" },
+          { label: "Policy Term", value: "Lifetime" }
+        ],
+        benefits: [
+          "Lifetime Medical Support: Health riders remain active even after age 65.",
+          "High Term Payout: Nominees receive boosted sum assured for early losses.",
+          "Maximum Tax Exemption: Fully eligible for Nepalese health insurance tax credits."
+        ]
+      },
+      letmp: {
+        title: "Limited Endowment Cum Term With Medical Policy (LETMP)",
+        icon: "ph-medal",
+        price: "Starting @ रु700/year",
+        desc: "Our most premium comprehensive program. Enjoy limited premium payments for a policy that bundles long-term endowment growth, high-sum term cover, and full-featured cashless health coverage.",
+        eligibility: [
+          { label: "Min Entry Age", value: "18 Years" },
+          { label: "Max Entry Age", value: "55 Years" },
+          { label: "Premium Payment", value: "5, 10, or 15 Years" },
+          { label: "Policy Term", value: "15 to 30 Years" }
+        ],
+        benefits: [
+          "Premium Package: Custom savings yields and high-tier medical room options.",
+          "Short Commitments: Build assets early and enjoy coverage through retirement.",
+          "Zero Deductibles: Full cashless settlement for covered health emergencies."
+        ]
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const overlay = document.getElementById('drawerOverlay');
+      const card = document.getElementById('drawerCard');
+      const content = document.getElementById('drawerContent');
+      const closeBtn = document.getElementById('drawerClose');
+
+      function openDrawer(policyKey) {
+        const data = policyDetails[policyKey];
+        if (!data) return;
+
+        // Construct HTML content
+        let eligibilityRows = '';
+        data.eligibility.forEach(item => {
+          eligibilityRows += `<tr><td>${item.label}</td><td>${item.value}</td></tr>`;
+        });
+
+        let benefitsList = '';
+        data.benefits.forEach(benefit => {
+          benefitsList += `<li><i class="ph-fill ph-check-circle"></i> ${benefit}</li>`;
+        });
+
+        content.innerHTML = `
+          <div class="drawer-header">
+            <i class="ph-fill ${data.icon}"></i>
+            <h2>${data.title}</h2>
+            <div class="drawer-price">${data.price}</div>
+          </div>
+          
+          <div class="drawer-section">
+            <h4>Policy Description</h4>
+            <p>${data.desc}</p>
+          </div>
+
+          <div class="drawer-section">
+            <h4>Eligibility & Details</h4>
+            <table class="drawer-table">
+              <tbody>
+                ${eligibilityRows}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="drawer-section">
+            <h4>Key Plan Benefits</h4>
+            <ul class="drawer-benefits">
+              ${benefitsList}
+            </ul>
+          </div>
+
+          <button class="btn-primary drawer-cta" onclick="window.location.href='contact.html?subject=Quote%20Request:%20${encodeURIComponent(data.title)}'">Get a Free Quote</button>
+        `;
+
+        overlay.classList.add('active');
+      }
+
+      function closeDrawer() {
+        overlay.classList.remove('active');
+      }
+
+      // Add click listeners to cards
+      document.querySelectorAll('.info-card[data-policy]').forEach(cardEl => {
+        cardEl.addEventListener('click', () => {
+          const key = cardEl.getAttribute('data-policy');
+          openDrawer(key);
+        });
+      });
+
+      // Close events
+      closeBtn.addEventListener('click', closeDrawer);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeDrawer();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeDrawer();
+      });
+    });
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>

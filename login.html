@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | BeemaDukan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+
+  <a href="index.html" class="auth-back"><i class="ph-bold ph-arrow-left"></i> Back to Home</a>
+
+  <div class="auth-card">
+    <a href="index.html" class="auth-brand-center">
+      <svg width="32" height="32" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#shieldGrad)"/>
+        <path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs><linearGradient id="shieldGrad" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs>
+      </svg>
+      Beema<span class="logo-accent">Dukan</span>
+    </a>
+
+    <div class="auth-header">
+      <h3>Welcome Back</h3>
+      <p>Please enter your details to sign in.</p>
+    </div>
+    
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+      <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form class="auth-form active" id="authLoginForm">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="••••••••" required>
+      </div>
+      <div class="form-row" style="margin-bottom: 24px;">
+        <label class="checkbox-label"><input type="checkbox" checked> Remember me</label>
+        <a href="#" class="form-link">Forgot password?</a>
+      </div>
+      <button type="submit" class="btn-primary btn-glow btn-full" style="padding: 16px; font-size: 1.05rem;">Sign In</button>
+      
+      <div class="form-divider"><span>or continue with</span></div>
+      <div class="social-login">
+        <button type="button" class="social-btn"><i class="ph-fill ph-google-logo"></i> Google</button>
+        <button type="button" class="social-btn"><i class="ph-fill ph-device-mobile"></i> OTP</button>
+      </div>
+    </form>
+
+    <!-- SIGNUP FORM -->
+    <form class="auth-form" id="authSignupForm">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="John Doe" required>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+977 980-2379831" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="••••••••" required>
+      </div>
+      <div style="margin-bottom: 24px;">
+        <label class="checkbox-label"><input type="checkbox" required> I agree to the <a href="#" class="form-link">Terms & Privacy Policy</a></label>
+      </div>
+      <button type="submit" class="btn-primary btn-glow btn-full" style="padding: 16px; font-size: 1.05rem;">Create Account</button>
+    </form>
+  </div>
+
+  <script>
+    function switchAuthTab(tab) {
+      const tabs = document.querySelectorAll('.auth-tab');
+      const forms = document.querySelectorAll('.auth-form');
+      const headerTitle = document.querySelector('.auth-header h3');
+      const headerSub = document.querySelector('.auth-header p');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      forms.forEach(f => f.classList.remove('active'));
+
+      if (tab === 'login') {
+        tabs[0].classList.add('active');
+        document.getElementById('authLoginForm').classList.add('active');
+        headerTitle.innerText = 'Welcome Back';
+        headerSub.innerText = 'Please enter your details to sign in.';
+      } else {
+        tabs[1].classList.add('active');
+        document.getElementById('authSignupForm').classList.add('active');
+        headerTitle.innerText = 'Create Account';
+        headerSub.innerText = 'Join us and secure your future today.';
+      }
+    }
+
+    // Auth Logic Simulation using LocalStorage
+    const loginForm = document.getElementById('authLoginForm');
+    const signupForm = document.getElementById('authSignupForm');
+
+    // Validation Regex Patterns
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/; // Min 8 chars, 1 uppercase, 1 lowercase, 1 number
+
+    signupForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = this.querySelector('input[type="text"]').value;
+      const email = this.querySelector('input[type="email"]').value;
+      const phone = this.querySelector('input[type="tel"]').value;
+      const password = this.querySelector('input[type="password"]').value;
+      
+      // Validations
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      
+      // Clean phone number (remove spaces, dashes, parentheses)
+      const cleanPhone = phone.replace(/[\s\-()]/g, '');
+      
+      // Phone must be exactly 10 digits OR start with '+' and have 11-14 digits
+      const isValidPhone = (/^\d{10}$/.test(cleanPhone)) || (/^\+\d{11,14}$/.test(cleanPhone));
+      
+      if (!isValidPhone) {
+        alert('Invalid phone number! Enter exactly 10 digits, or use a "+" with your country code (e.g., +9779802379831).');
+        return;
+      }
+      
+      if (!passRegex.test(password)) {
+        alert('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.');
+        return;
+      }
+      
+      // Save to localStorage to simulate a database registration
+      localStorage.setItem('registeredEmail', email);
+      localStorage.setItem('registeredPassword', password); // Basic simulation
+      
+      alert('Registration successful! Please log in with your new account.');
+      
+      // Switch back to login tab
+      switchAuthTab('login');
+      // Auto-fill the email for convenience
+      loginForm.querySelector('input[type="email"]').value = email;
+      this.reset();
+    });
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const enteredEmail = this.querySelector('input[type="email"]').value;
+      const enteredPassword = this.querySelector('input[type="password"]').value;
+      
+      const registeredEmail = localStorage.getItem('registeredEmail');
+      const registeredPassword = localStorage.getItem('registeredPassword');
+      
+      if (!emailRegex.test(enteredEmail)) {
+        alert('Please enter a valid email format.');
+        return;
+      }
+      
+      if (!registeredEmail || enteredEmail !== registeredEmail) {
+        alert('Account not found! You must register first with this email before logging in.');
+      } else if (enteredPassword !== registeredPassword) {
+        alert('Incorrect password! Please try again.');
+      } else {
+        alert('Login successful! Redirecting to dashboard...');
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>

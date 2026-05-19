@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | BeemaDukan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+          <path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#shieldGrad)"/>
+          <path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs><linearGradient id="shieldGrad" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs>
+        </svg>
+        Beema<span class="logo-accent">Dukan</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#categories">Insurance</a></li>
+        <li><a href="index.html#claims">Claims</a></li>
+        <li><a href="index.html#calculator">Calculator</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Support</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-ghost">Login</a>
+        <button class="btn-primary btn-glow" id="getProtectedBtn">Get Protected</button>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="about-hero">
+    <div class="container">
+      <div class="section-tag" style="margin: 0 auto 20px;">Our Story</div>
+      <h1 data-anim="fade-up">Redefining <span class="gradient-text">Insurance</span></h1>
+      <p data-anim="fade-up" style="transition-delay: 0.1s;">We believe insurance shouldn't be confusing, hidden behind paperwork, or take weeks to process. We are on a mission to make financial protection transparent, instant, and accessible to every Indian.</p>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="section-header" data-anim="fade-up">
+        <h2>Our Core <span class="gradient-text">Values</span></h2>
+        <p>The principles that guide everything we build.</p>
+      </div>
+      <div class="info-grid">
+        <div class="info-card" data-anim="fade-up">
+          <i class="ph-fill ph-magnifying-glass"></i>
+          <h3>Absolute Transparency</h3>
+          <p>No hidden clauses, no tiny asterisk marks. We show you exactly what is covered and what isn't, in plain English.</p>
+        </div>
+        <div class="info-card" data-anim="fade-up" style="transition-delay: 0.1s;">
+          <i class="ph-fill ph-lightning"></i>
+          <h3>Lightning Fast</h3>
+          <p>From buying a policy in 2 minutes to getting claims settled in under 24 hours, we respect your time.</p>
+        </div>
+        <div class="info-card" data-anim="fade-up" style="transition-delay: 0.2s;">
+          <i class="ph-fill ph-users"></i>
+          <h3>Customer First</h3>
+          <p>Our 24/7 support team doesn't read from scripts. We are here to fight for your claims and support your family.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section" style="background: rgba(255,255,255,0.012); border-top: 1px solid var(--glass-border);">
+    <div class="container">
+      <div class="section-header" data-anim="fade-up">
+        <h2>Meet The <span class="gradient-text">Leadership</span></h2>
+        <p>The team dedicated to securing your future.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card" data-anim="fade-up">
+          <img src="https://i.pravatar.cc/300?img=11" alt="Rohan Verma" class="team-avatar">
+          <div class="team-name">Rohan Verma</div>
+          <div class="team-role">Founder & CEO</div>
+        </div>
+        <div class="team-card" data-anim="fade-up" style="transition-delay: 0.1s;">
+          <img src="https://i.pravatar.cc/300?img=5" alt="Priya Singh" class="team-avatar">
+          <div class="team-name">Priya Singh</div>
+          <div class="team-role">Chief Operating Officer</div>
+        </div>
+        <div class="team-card" data-anim="fade-up" style="transition-delay: 0.2s;">
+          <img src="https://i.pravatar.cc/300?img=33" alt="Arjun Patel" class="team-avatar">
+          <div class="team-name">Arjun Patel</div>
+          <div class="team-role">Head of Claims</div>
+        </div>
+        <div class="team-card" data-anim="fade-up" style="transition-delay: 0.3s;">
+          <img src="https://i.pravatar.cc/300?img=47" alt="Sneha Rao" class="team-avatar">
+          <div class="team-name">Sneha Rao</div>
+          <div class="team-role">Chief Technology Officer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html#hero" class="logo">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#fg)"/><path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="fg" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs></svg>
+            Beema<span class="logo-accent">Dukan</span>
+          </a>
+          <p>Making insurance simple, transparent, and accessible for every Nepali.</p>
+        </div>
+        <div class="footer-col"><h4>Insurance</h4><ul>
+          <li><a href="health-insurance.html">Health Insurance</a></li>
+          <li><a href="life-insurance.html">Life Insurance</a></li>
+          <li><a href="vehicle-insurance.html">Vehicle Insurance</a></li>
+          <li><a href="travel-insurance.html">Travel Insurance</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Company</h4><ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html#testimonials">Reviews</a></li>
+          <li><a href="index.html#comparison">Why Us</a></li>
+          <li><a href="contact.html">Careers</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <div class="trust-strip">
+          <span><i class="ph-fill ph-shield-check"></i> Beema Pradhikaran Approved</span>
+          <span><i class="ph-fill ph-lock-key"></i> 256-bit SSL Secure</span>
+        </div>
+        <div class="footer-legal">
+          <p>&copy; 2026 BeemaDukan. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

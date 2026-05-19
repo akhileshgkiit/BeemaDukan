@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Insurance | BeemaDukan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .details-hero { padding: 180px 0 100px; text-align: center; background: radial-gradient(circle at top, rgba(16, 185, 129, 0.15) 0%, transparent 60%); border-bottom: 1px solid var(--glass-border); }
+    .details-hero h1 { font-size: 3.5rem; font-family: 'Manrope', sans-serif; font-weight: 800; margin-bottom: 24px; line-height: 1.1; }
+    .details-hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 600px; margin: 0 auto 40px; line-height: 1.6; }
+    .info-section { padding: 120px 0; }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+    .info-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px; text-align: left; }
+    .info-card i { font-size: 2.5rem; color: #10B981; margin-bottom: 24px; display: block; }
+    .info-card h3 { font-size: 1.5rem; margin-bottom: 16px; font-family: 'Manrope', sans-serif; }
+    .info-card p { color: var(--text-dim); line-height: 1.6; margin-bottom: 24px; }
+    .info-features { list-style: none; padding: 0; margin: 0; }
+    .info-features li { display: flex; align-items: center; gap: 12px; color: var(--text); margin-bottom: 12px; font-size: 0.95rem; }
+    .info-features li i { font-size: 1.2rem; color: #10B981; margin: 0; }
+    #price-health { display: grid !important; }
+
+    /* Compare Table Styles */
+    .compare-insurers-table td, .compare-insurers-table th {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.95rem;
+      vertical-align: middle;
+    }
+    .compare-insurers-table th {
+      font-family: 'Manrope', sans-serif;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+    .compare-insurers-table tr:hover td {
+      background: rgba(255,255,255,0.02);
+    }
+    .insurer-name {
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Manrope', sans-serif;
+    }
+    .insurer-logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 10px rgba(16,185,129,0.5);
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--primary);
+      background: rgba(37,99,235,0.15);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(37,99,235,0.25);
+    }
+    .badge-feature {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      background: rgba(16,185,129,0.1);
+      color: #10B981;
+      margin-left: 8px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+          <path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#shieldGrad)"/>
+          <path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs><linearGradient id="shieldGrad" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs>
+        </svg>
+        Beema<span class="logo-accent">Dukan</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#categories">Insurance</a></li>
+        <li><a href="index.html#claims">Claims</a></li>
+        <li><a href="index.html#calculator">Calculator</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Support</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-ghost">Login</a>
+        <button class="btn-primary btn-glow" id="getProtectedBtn">Get Protected</button>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="details-hero">
+    <div class="container">
+      <div class="section-tag" style="margin: 0 auto 20px;">Health Insurance</div>
+      <h1 data-anim="fade-up">Uncompromised <span class="gradient-text">Health Cover</span></h1>
+      <p data-anim="fade-up" style="transition-delay: 0.1s;">Comprehensive medical protection for you and your family. Cashless claims across 10,000+ top-tier hospitals nationwide.</p>
+      <div style="display: flex; gap: 16px; justify-content: center;" data-anim="fade-up" style="transition-delay: 0.2s;">
+        <a href="#pricing" class="btn-primary btn-glow">View Plans</a>
+        <a href="index.html#calculator" class="btn-ghost" style="border: 1px solid var(--glass-border); border-radius: 8px;">Calculate Premium</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="section-header" data-anim="fade-up">
+        <h2>Understanding <span class="gradient-text">Health Insurance</span></h2>
+        <p>Explore the health plans designed to fit your unique medical needs.</p>
+      </div>
+      <div class="info-grid">
+        
+        <div class="info-card" data-anim="fade-up"><i class="ph-fill ph-user"></i><h3>Individual Plan</h3><p>Comprehensive coverage designed specifically for individuals, ensuring your personal health is always prioritized without compromise.</p><ul class="info-features"><li><i class="ph-fill ph-check-circle"></i> Dedicated sum insured</li><li><i class="ph-fill ph-check-circle"></i> Free annual checkups</li><li><i class="ph-fill ph-check-circle"></i> Pre/Post hospitalization</li></ul></div>
+        <div class="info-card" data-anim="fade-up" style="transition-delay: 0.1s;"><i class="ph-fill ph-users"></i><h3>Family Floater</h3><p>A single policy that covers your entire family. Share a massive pool of coverage ensuring everyone gets the care they need.</p><ul class="info-features"><li><i class="ph-fill ph-check-circle"></i> Covers up to 6 members</li><li><i class="ph-fill ph-check-circle"></i> Maternity benefits</li><li><i class="ph-fill ph-check-circle"></i> Shared sum insured</li></ul></div>
+        <div class="info-card" data-anim="fade-up" style="transition-delay: 0.2s;"><i class="ph-fill ph-heartbeat"></i><h3>Critical Illness</h3><p>Provides a lump-sum payout upon diagnosis of life-threatening diseases, ensuring you can focus on recovery, not bills.</p><ul class="info-features"><li><i class="ph-fill ph-check-circle"></i> 36 illnesses covered</li><li><i class="ph-fill ph-check-circle"></i> Lump-sum payout</li><li><i class="ph-fill ph-check-circle"></i> Global treatment</li></ul></div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section" id="pricing" style="background: rgba(255,255,255,0.012);">
+    <div class="container">
+      <div class="section-header" data-anim="fade-up">
+        <span class="section-tag">Plans</span>
+        <h2>Choose Your <span class="gradient-text">Protection</span></h2>
+      </div>
+      <div class="pricing-controls" data-anim="fade-up">
+        <div class="billing-toggle">
+          <span class="bill-label">Monthly</span>
+          <label class="switch">
+            <input type="checkbox" id="billingSwitch" checked>
+            <span class="slider"></span>
+          </label>
+          <span class="bill-label">Yearly <span class="badge-save">Save 20%</span></span>
+        </div>
+      </div>
+      
+      
+      <div class="pricing-grid" id="price-health">
+        <div class="price-card glass-card">
+          <div class="pc-top"><i class="ph-fill ph-heartbeat"></i><h3>Health Basic</h3></div>
+          <div class="pc-price"><span class="currency">NPR</span><span class="amount" data-monthly="2500" data-yearly="25000">25,000</span><span class="period">/year</span></div>
+          <ul class="pc-features">
+            <li><i class="ph-fill ph-check-circle"></i> Individual coverage</li>
+            <li><i class="ph-fill ph-check-circle"></i> रु5L Sum Insured</li>
+            <li><i class="ph-fill ph-check-circle"></i> Cashless at 500+ hospitals</li>
+          </ul>
+          <button class="btn-outline w-100">Choose Plan</button>
+        </div>
+        <div class="price-card glass-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pc-top"><i class="ph-fill ph-users"></i><h3>Family Care</h3></div>
+          <div class="pc-price"><span class="currency">NPR</span><span class="amount" data-monthly="6500" data-yearly="65000">65,000</span><span class="period">/year</span></div>
+          <ul class="pc-features">
+            <li><i class="ph-fill ph-check-circle"></i> Family protection (2A+2C)</li>
+            <li><i class="ph-fill ph-check-circle"></i> रु15L Sum Insured</li>
+            <li><i class="ph-fill ph-check-circle"></i> Free annual checkups</li>
+          </ul>
+          <button class="btn-primary w-100">Choose Plan</button>
+        </div>
+        <div class="price-card glass-card">
+          <div class="pc-top"><i class="ph-fill ph-crown"></i><h3>Elite Health</h3></div>
+          <div class="pc-price"><span class="currency">NPR</span><span class="amount" data-monthly="12000" data-yearly="120000">120,000</span><span class="period">/year</span></div>
+          <ul class="pc-features">
+            <li><i class="ph-fill ph-check-circle"></i> Premium hospital support</li>
+            <li><i class="ph-fill ph-check-circle"></i> Global coverage</li>
+            <li><i class="ph-fill ph-check-circle"></i> No room rent capping</li>
+          </ul>
+          <button class="btn-outline w-100">Choose Plan</button>
+        </div>
+      </div>
+        
+      
+      <!-- COMPARATIVE INSURERS TABLE -->
+      <div class="comparison-table-wrapper glass-card" style="margin-top: 60px; overflow-x: auto; padding: 32px;" data-anim="fade-up">
+        <h3 style="font-size: 1.5rem; margin-bottom: 24px; font-family: 'Manrope', sans-serif; color: #fff;">Compare Insurers & Benefits Side-by-Side</h3>
+        
+        <!-- Filter Controls -->
+        <div class="table-filters" style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+          <button class="filter-btn active" data-filter="all">All Plans</button>
+          <button class="filter-btn" data-filter="high-csr">High Claim Settlement (>95%)</button>
+          <button class="filter-btn" data-filter="cashless">Max Cashless Networks</button>
+          <button class="filter-btn" data-filter="low-price">Lowest Price First</button>
+        </div>
+
+        <table class="compare-insurers-table" style="width: 100%; border-collapse: collapse; min-width: 600px;">
+          <thead>
+            <tr style="border-bottom: 2px solid rgba(255,255,255,0.08); text-align: left;">
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Insurer</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Claim Settlement Ratio</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Cashless Hospitals</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Starting Premium</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600; text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="insurersTableBody">
+            <!-- Dynamic rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <script>
+        const healthInsurers = [
+          { name: "Shikhar Insurance", csr: 97.8, cashless: 650, premium: 18500, features: ["COVID-19 covered", "OPD benefit"] },
+          { name: "NLG Insurance", csr: 96.5, cashless: 520, premium: 19200, features: ["Maternity Cover"] },
+          { name: "Nepal Life Insurance", csr: 98.1, cashless: 480, premium: 21000, features: ["Highest Trust"] },
+          { name: "Neco Insurance", csr: 94.2, cashless: 380, premium: 16800, features: ["Fast Settlement"] }
+        ];
+
+        function renderInsurers(data) {
+          const tbody = document.getElementById('insurersTableBody');
+          tbody.innerHTML = '';
+          data.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>
+                <div class="insurer-name">
+                  <div class="insurer-logo-dot"></div>
+                  <span>${item.name}</span>
+                  ${item.features.map(f => `<span class="badge-feature">${f}</span>`).join('')}
+                </div>
+              </td>
+              <td style="font-weight: 600; color: #fff;">${item.csr}%</td>
+              <td>${item.cashless}+ clinics</td>
+              <td style="font-weight: 700; color: var(--accent);">रु${new Intl.NumberFormat('en-IN').format(item.premium)}/yr</td>
+              <td style="text-align: right;"><button class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem;" onclick="window.location.href='contact.html?subject=Quote%20Request:%20Health%20Plan%20from%20${encodeURIComponent(item.name)}'">Get Quote</button></td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+          renderInsurers(healthInsurers);
+
+          document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+
+              const filter = btn.getAttribute('data-filter');
+              let filtered = [...healthInsurers];
+
+              if (filter === 'high-csr') {
+                filtered = filtered.filter(x => x.csr > 95);
+              } else if (filter === 'cashless') {
+                filtered = filtered.filter(x => x.cashless > 500);
+              } else if (filter === 'low-price') {
+                filtered.sort((a, b) => a.premium - b.premium);
+              }
+
+              renderInsurers(filtered);
+            });
+          });
+        });
+      </script>
+
+      <div class="pricing-disclaimer">*Pricing shown is estimated and may vary based on specific policy details.</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html#hero" class="logo">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#fg)"/><path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="fg" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs></svg>
+            Beema<span class="logo-accent">Dukan</span>
+          </a>
+          <p>Making insurance simple, transparent, and accessible for every Nepali.</p>
+        </div>
+        <div class="footer-col"><h4>Insurance</h4><ul>
+          <li><a href="health-insurance.html">Health Insurance</a></li>
+          <li><a href="life-insurance.html">Life Insurance</a></li>
+          <li><a href="vehicle-insurance.html">Vehicle Insurance</a></li>
+          <li><a href="travel-insurance.html">Travel Insurance</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Company</h4><ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html#testimonials">Reviews</a></li>
+          <li><a href="index.html#comparison">Why Us</a></li>
+          <li><a href="contact.html">Careers</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <div class="trust-strip">
+          <span><i class="ph-fill ph-shield-check"></i> Beema Pradhikaran Approved</span>
+          <span><i class="ph-fill ph-lock-key"></i> 256-bit SSL Secure</span>
+        </div>
+        <div class="footer-legal">
+          <p>&copy; 2026 BeemaDukan. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

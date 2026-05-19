@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Insurance | BeemaDukan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .details-hero { padding: 180px 0 100px; text-align: center; background: radial-gradient(circle at top, rgba(245, 158, 11, 0.15) 0%, transparent 60%); border-bottom: 1px solid var(--glass-border); }
+    .details-hero h1 { font-size: 3.5rem; font-family: 'Manrope', sans-serif; font-weight: 800; margin-bottom: 24px; line-height: 1.1; }
+    .details-hero p { font-size: 1.2rem; color: var(--text-dim); max-width: 600px; margin: 0 auto 40px; line-height: 1.6; }
+    .info-section { padding: 120px 0; }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+    .info-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 20px; padding: 40px; text-align: left; }
+    .info-card i { font-size: 2.5rem; color: #F59E0B; margin-bottom: 24px; display: block; }
+    .info-card h3 { font-size: 1.5rem; margin-bottom: 16px; font-family: 'Manrope', sans-serif; }
+    .info-card p { color: var(--text-dim); line-height: 1.6; margin-bottom: 24px; }
+    .info-features { list-style: none; padding: 0; margin: 0; }
+    .info-features li { display: flex; align-items: center; gap: 12px; color: var(--text); margin-bottom: 12px; font-size: 0.95rem; }
+    .info-features li i { font-size: 1.2rem; color: #10B981; margin: 0; }
+    #price-vehicle { display: grid !important; }
+
+    /* Compare Table Styles */
+    .compare-insurers-table td, .compare-insurers-table th {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.95rem;
+      vertical-align: middle;
+    }
+    .compare-insurers-table th {
+      font-family: 'Manrope', sans-serif;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+    .compare-insurers-table tr:hover td {
+      background: rgba(255,255,255,0.02);
+    }
+    .insurer-name {
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Manrope', sans-serif;
+    }
+    .insurer-logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #F59E0B;
+      box-shadow: 0 0 10px rgba(245,158,11,0.5);
+    }
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: var(--text-dim);
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--primary);
+      background: rgba(37,99,235,0.15);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(37,99,235,0.25);
+    }
+    .badge-feature {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      background: rgba(245,158,11,0.1);
+      color: #F59E0B;
+      margin-left: 8px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+          <path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#shieldGrad)"/>
+          <path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs><linearGradient id="shieldGrad" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs>
+        </svg>
+        Beema<span class="logo-accent">Dukan</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#categories">Insurance</a></li>
+        <li><a href="index.html#claims">Claims</a></li>
+        <li><a href="index.html#calculator">Calculator</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Support</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-ghost">Login</a>
+        <button class="btn-primary btn-glow" id="getProtectedBtn">Get Protected</button>
+      </div>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <section class="details-hero">
+    <div class="container">
+      <div class="section-tag" style="margin: 0 auto 20px;">Vehicle Insurance</div>
+      <h1 data-anim="fade-up">Drive With <span class="gradient-text">Absolute Confidence</span></h1>
+      <p data-anim="fade-up" style="transition-delay: 0.1s;">Instant policy issuance and lightning-fast claim settlements for your car or bike. Because the road is unpredictable.</p>
+      <div style="display: flex; gap: 16px; justify-content: center;" data-anim="fade-up" style="transition-delay: 0.2s;">
+        <a href="#pricing" class="btn-primary btn-glow">View Plans</a>
+        <a href="index.html#calculator" class="btn-ghost" style="border: 1px solid var(--glass-border); border-radius: 8px;">Calculate Premium</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <div class="container">
+      <div class="section-header" data-anim="fade-up">
+        <h2>Understanding <span class="gradient-text">Vehicle Insurance</span></h2>
+        <p>Protect your vehicle against accidents, theft, and third-party liabilities.</p>
+      </div>
+      <div class="info-grid">
+        
+        <div class="info-card" data-anim="fade-up"><i class="ph-fill ph-car-profile"></i><h3>Comprehensive Cover</h3><p>End-to-end protection for your vehicle against damages, theft, natural disasters, and third-party liabilities.</p><ul class="info-features"><li><i class="ph-fill ph-check-circle"></i> Own damage covered</li><li><i class="ph-fill ph-check-circle"></i> Theft protection</li><li><i class="ph-fill ph-check-circle"></i> Natural disasters</li></ul></div>
+        <div class="info-card" data-anim="fade-up" style="transition-delay: 0.1s;"><i class="ph-fill ph-motorcycle"></i><h3>Two-Wheeler Insurance</h3><p>Dedicated plans tailored for motorcycles and scooters, offering complete peace of mind on every ride.</p><ul class="info-features"><li><i class="ph-fill ph-check-circle"></i> Instant renewal</li><li><i class="ph-fill ph-check-circle"></i> Personal accident cover</li><li><i class="ph-fill ph-check-circle"></i> Roadside assistance</li></ul></div>
+        <div class="info-card" data-anim="fade-up" style="transition-delay: 0.2s;"><i class="ph-fill ph-shield-plus"></i><h3>Zero Depreciation</h3><p>Get full claim value without any deduction for the depreciation of parts. Keep your car as good as new.</p><ul class="info-features"><li><i class="ph-fill ph-check-circle"></i> Bumper-to-bumper cover</li><li><i class="ph-fill ph-check-circle"></i> 100% replacement cost</li><li><i class="ph-fill ph-check-circle"></i> Consumables covered</li></ul></div>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing-section" id="pricing" style="background: rgba(255,255,255,0.012);">
+    <div class="container">
+      <div class="section-header" data-anim="fade-up">
+        <span class="section-tag">Plans</span>
+        <h2>Choose Your <span class="gradient-text">Protection</span></h2>
+      </div>
+      <div class="pricing-controls" data-anim="fade-up">
+        <div class="billing-toggle">
+          <span class="bill-label">Monthly</span>
+          <label class="switch">
+            <input type="checkbox" id="billingSwitch" checked>
+            <span class="slider"></span>
+          </label>
+          <span class="bill-label">Yearly <span class="badge-save">Save 20%</span></span>
+        </div>
+      </div>
+      
+      
+      <div class="pricing-grid" id="price-vehicle">
+        <div class="price-card glass-card">
+          <div class="pc-top">
+            <i class="ph-fill ph-car-profile"></i>
+            <h3>Basic Drive</h3>
+          </div>
+          <div class="pc-price">
+            <span class="currency">NPR</span>
+            <span class="amount" data-monthly="499" data-yearly="4999">4,999</span>
+            <span class="period">/year</span>
+          </div>
+          <ul class="pc-features">
+            <li><i class="ph-fill ph-check-circle"></i> Accident coverage</li>
+            <li><i class="ph-fill ph-check-circle"></i> Third-party liability</li>
+            <li><i class="ph-fill ph-check-circle"></i> Instant policy issuance</li>
+          </ul>
+          <button class="btn-outline w-100">Choose Plan</button>
+        </div>
+        <div class="price-card glass-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pc-top">
+            <i class="ph-fill ph-shield-check"></i>
+            <h3>Smart Protect</h3>
+          </div>
+          <div class="pc-price">
+            <span class="currency">NPR</span>
+            <span class="amount" data-monthly="899" data-yearly="8999">8,999</span>
+            <span class="period">/year</span>
+          </div>
+          <ul class="pc-features">
+            <li><i class="ph-fill ph-check-circle"></i> Accident coverage</li>
+            <li><i class="ph-fill ph-check-circle"></i> Theft + Damage</li>
+            <li><i class="ph-fill ph-check-circle"></i> Zero depreciation</li>
+          </ul>
+          <button class="btn-primary w-100">Choose Plan</button>
+        </div>
+        <div class="price-card glass-card">
+          <div class="pc-top">
+            <i class="ph-fill ph-star"></i>
+            <h3>Premium Shield</h3>
+          </div>
+          <div class="pc-price">
+            <span class="currency">NPR</span>
+            <span class="amount" data-monthly="1499" data-yearly="14999">14,999</span>
+            <span class="period">/year</span>
+          </div>
+          <ul class="pc-features">
+            <li><i class="ph-fill ph-check-circle"></i> Full protection</li>
+            <li><i class="ph-fill ph-check-circle"></i> Engine & Gearbox cover</li>
+            <li><i class="ph-fill ph-check-circle"></i> Roadside assistance</li>
+          </ul>
+          <button class="btn-outline w-100">Choose Plan</button>
+        </div>
+      </div>
+        
+      
+      <!-- COMPARATIVE INSURERS TABLE -->
+      <div class="comparison-table-wrapper glass-card" style="margin-top: 60px; overflow-x: auto; padding: 32px;" data-anim="fade-up">
+        <h3 style="font-size: 1.5rem; margin-bottom: 24px; font-family: 'Manrope', sans-serif; color: #fff;">Compare Insurers & Garage Networks Side-by-Side</h3>
+        
+        <!-- Filter Controls -->
+        <div class="table-filters" style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+          <button class="filter-btn active" data-filter="all">All Plans</button>
+          <button class="filter-btn" data-filter="high-csr">High Claim Settlement (>94%)</button>
+          <button class="filter-btn" data-filter="garages">Max Cashless Garages</button>
+          <button class="filter-btn" data-filter="low-price">Lowest Price First</button>
+        </div>
+
+        <table class="compare-insurers-table" style="width: 100%; border-collapse: collapse; min-width: 600px;">
+          <thead>
+            <tr style="border-bottom: 2px solid rgba(255,255,255,0.08); text-align: left;">
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Insurer</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Claim Settlement Ratio</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Cashless Garages</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600;">Starting Premium</th>
+              <th style="padding: 16px; color: var(--text-dim); font-weight: 600; text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="insurersTableBody">
+            <!-- Dynamic rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <script>
+        const vehicleInsurers = [
+          { name: "Shikhar Insurance", csr: 95.4, cashless: 22, premium: 4500, features: ["Zero Dep", "Roadside Assist"] },
+          { name: "Himalayan Everest", csr: 93.2, cashless: 18, premium: 4800, features: ["Engine Protection"] },
+          { name: "Sagarmatha Lumbini", csr: 96.1, cashless: 25, premium: 5200, features: ["Bumper to Bumper"] },
+          { name: "Neco Insurance", csr: 91.8, cashless: 14, premium: 3900, features: ["Third Party Only"] }
+        ];
+
+        function renderInsurers(data) {
+          const tbody = document.getElementById('insurersTableBody');
+          tbody.innerHTML = '';
+          data.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>
+                <div class="insurer-name">
+                  <div class="insurer-logo-dot"></div>
+                  <span>${item.name}</span>
+                  ${item.features.map(f => `<span class="badge-feature">${f}</span>`).join('')}
+                </div>
+              </td>
+              <td style="font-weight: 600; color: #fff;">${item.csr}%</td>
+              <td>${item.cashless} Garages</td>
+              <td style="font-weight: 700; color: var(--accent);">रु${new Intl.NumberFormat('en-IN').format(item.premium)}/yr</td>
+              <td style="text-align: right;"><button class="btn-primary" style="padding: 8px 16px; font-size: 0.85rem;" onclick="window.location.href='contact.html?subject=Quote%20Request:%20Vehicle%20Plan%20from%20${encodeURIComponent(item.name)}'">Get Quote</button></td>
+            `;
+            tbody.appendChild(tr);
+          });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+          renderInsurers(vehicleInsurers);
+
+          document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+              btn.classList.add('active');
+
+              const filter = btn.getAttribute('data-filter');
+              let filtered = [...vehicleInsurers];
+
+              if (filter === 'high-csr') {
+                filtered = filtered.filter(x => x.csr > 94);
+              } else if (filter === 'garages') {
+                filtered = filtered.filter(x => x.cashless > 20);
+              } else if (filter === 'low-price') {
+                filtered.sort((a, b) => a.premium - b.premium);
+              }
+
+              renderInsurers(filtered);
+            });
+          });
+        });
+      </script>
+
+      <div class="pricing-disclaimer">*Pricing shown is estimated and may vary based on specific policy details.</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <a href="index.html#hero" class="logo">
+            <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><path d="M14 2L4 6.5V13.5C4 19.2 8.4 24.6 14 26C19.6 24.6 24 19.2 24 13.5V6.5L14 2Z" fill="url(#fg)"/><path d="M10 13.5L12.5 16L18 11" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="fg" x1="4" y1="2" x2="24" y2="26" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs></svg>
+            Beema<span class="logo-accent">Dukan</span>
+          </a>
+          <p>Making insurance simple, transparent, and accessible for every Nepali.</p>
+        </div>
+        <div class="footer-col"><h4>Insurance</h4><ul>
+          <li><a href="health-insurance.html">Health Insurance</a></li>
+          <li><a href="life-insurance.html">Life Insurance</a></li>
+          <li><a href="vehicle-insurance.html">Vehicle Insurance</a></li>
+          <li><a href="travel-insurance.html">Travel Insurance</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Company</h4><ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html#testimonials">Reviews</a></li>
+          <li><a href="index.html#comparison">Why Us</a></li>
+          <li><a href="contact.html">Careers</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-bottom">
+        <div class="trust-strip">
+          <span><i class="ph-fill ph-shield-check"></i> Beema Pradhikaran Approved</span>
+          <span><i class="ph-fill ph-lock-key"></i> 256-bit SSL Secure</span>
+        </div>
+        <div class="footer-legal">
+          <p>&copy; 2026 BeemaDukan. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
