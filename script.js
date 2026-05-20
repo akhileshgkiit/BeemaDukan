@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctaAdvisor:         () => scrollToSection('#faq'),
     mobileGetProtected: () => scrollToSection('#categories'),
     mobileLogin:        () => openModal(),
-    aiAssistant:        () => openAIChat(),
+    supportAssistant:   () => openSupportChat(),
     googleLoginBtn:     () => alert('Google login coming soon! 🚀'),
     phoneLoginBtn:      () => alert('OTP login coming soon! 📱'),
   };
@@ -738,89 +738,89 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ── AI ASSISTANT ──────────────────────────────────────────
-  function openAIChat() {
-    const existing = document.getElementById('aiChatBubble');
+  // ── CUSTOMER SUPPORT HELPDESK CHAT ──────────────────────────
+  function openSupportChat() {
+    const existing = document.getElementById('supportChatBubble');
     if (existing) { existing.remove(); return; }
     const bubble = document.createElement('div');
-    bubble.id = 'aiChatBubble';
+    bubble.id = 'supportChatBubble';
     bubble.innerHTML = `
-      <div class="ai-chat-header"><span><i class="ph-fill ph-robot"></i> BeemaBot</span><button id="aiClose">×</button></div>
-      <div class="ai-chat-body">
-        <div class="ai-msg bot">Hi! I'm BeemaBot. Ask me anything about insurance or choose an option below. 👋</div>
-        <div class="ai-quick-actions">
-          <button class="ai-qa-btn">Compare Plans</button>
-          <button class="ai-qa-btn">Track Claim</button>
-          <button class="ai-qa-btn">Contact Support</button>
+      <div class="support-chat-header"><span><i class="ph-fill ph-chat-circle-dots"></i> BeemaDukan Helpdesk</span><button id="supportClose">×</button></div>
+      <div class="support-chat-body">
+        <div class="support-msg bot">Hi! I'm your BeemaDukan support assistant. How can we help you today? 👋</div>
+        <div class="support-quick-actions">
+          <button class="support-qa-btn">Compare Plans</button>
+          <button class="support-qa-btn">Track Claim</button>
+          <button class="support-qa-btn">Contact Support</button>
         </div>
       </div>
-      <div class="ai-chat-input">
-        <input type="text" id="aiInput" placeholder="Ask about plans, claims...">
-        <button id="aiSend">→</button>
+      <div class="support-chat-input">
+        <input type="text" id="supportInput" placeholder="Type your message...">
+        <button id="supportSend">→</button>
       </div>`;
     document.body.appendChild(bubble);
     
-    document.querySelectorAll('.ai-qa-btn').forEach(btn => {
+    document.querySelectorAll('.support-qa-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        const aiInput = document.getElementById('aiInput');
-        aiInput.value = btn.innerText;
-        document.getElementById('aiSend').click();
+        const supportInput = document.getElementById('supportInput');
+        supportInput.value = btn.innerText;
+        document.getElementById('supportSend').click();
       });
     });
-    document.getElementById('aiClose').addEventListener('click', () => bubble.remove());
-    const aiInput = document.getElementById('aiInput');
-    const aiBody  = bubble.querySelector('.ai-chat-body');
+    document.getElementById('supportClose').addEventListener('click', () => bubble.remove());
+    const supportInput = document.getElementById('supportInput');
+    const supportBody  = bubble.querySelector('.support-chat-body');
     function sendMsg() {
-      const msg = aiInput.value.trim(); if (!msg) return;
-      aiBody.innerHTML += `<div class="ai-msg user">${msg}</div>`;
-      aiInput.value = '';
+      const msg = supportInput.value.trim(); if (!msg) return;
+      supportBody.innerHTML += `<div class="support-msg user">${msg}</div>`;
+      supportInput.value = '';
       const q = msg.toLowerCase();
-      let reply = "I'm here to help! Please contact our team at support@beemadukan.com for detailed advice.";
-      if (q.includes('health')) reply = "Our Health Insurance plans offer cashless claims at network hospitals with coverage from रु3L to रु1Cr. Want me to show plans?";
-      else if (q.includes('claim')) reply = "Claims are processed digitally. Submit docs online and get approved within 24 hours in most cases.";
-      else if (q.includes('price')||q.includes('premium')||q.includes('cost')) reply = "Try our Calculator section for instant estimates! Premiums start as low as रु500/month.";
-      else if (q.includes('life')) reply = "Term Life Insurance from रु1Cr cover is available starting ~रु600/month for a 30-year-old non-smoker.";
-      else if (q.includes('vehicle')||q.includes('car')) reply = "Vehicle Insurance covers your car or bike for third-party liability and own damage. Get a quote in 2 minutes!";
+      let reply = "Our support team is active 24/7. You can also reach us directly at support@beemadukan.com or call 1660-01-0888 (Toll-Free).";
+      if (q.includes('health')) reply = "Our Health Insurance plans offer cashless claims at network hospitals with coverage from रु3L to रु1Cr. Would you like to check the Health Insurance page?";
+      else if (q.includes('claim')) reply = "You can submit claims digitally on our Claims page and track progress with your Claim ID. Most claims are processed within 24 hours.";
+      else if (q.includes('price')||q.includes('premium')||q.includes('cost')) reply = "Use our Calculator section on the homepage for instant estimates! Premiums start as low as रु499/year.";
+      else if (q.includes('life')) reply = "Term Life Insurance offers up to रु1Cr coverage with flexible plans. View details on the Life Insurance page!";
+      else if (q.includes('vehicle')||q.includes('car')||q.includes('bike')) reply = "Vehicle Insurance covers third-party liability and own damage with instant policy issuance. View our Vehicle Insurance page!";
       setTimeout(() => {
-        aiBody.innerHTML += `<div class="ai-msg bot">${reply}</div>`;
-        aiBody.scrollTop = aiBody.scrollHeight;
+        supportBody.innerHTML += `<div class="support-msg bot">${reply}</div>`;
+        supportBody.scrollTop = supportBody.scrollHeight;
       }, 600);
     }
-    document.getElementById('aiSend').addEventListener('click', sendMsg);
-    aiInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(); });
+    document.getElementById('supportSend').addEventListener('click', sendMsg);
+    supportInput.addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(); });
     // Add chat bubble CSS once
-    if (!document.getElementById('aiChatStyle')) {
+    if (!document.getElementById('supportChatStyle')) {
       const s = document.createElement('style');
-      s.id = 'aiChatStyle';
+      s.id = 'supportChatStyle';
       s.textContent = `
-        #aiChatBubble{position:fixed;bottom:100px;right:24px;width:320px;background:rgba(15,23,42,.97);border:1px solid rgba(255,255,255,.1);border-radius:16px;z-index:960;box-shadow:0 16px 48px rgba(0,0,0,.5);font-family:'Inter',sans-serif;overflow:hidden;}
-        .ai-chat-header{padding:14px 18px;background:linear-gradient(135deg,#2563EB,#3B82F6);display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:.95rem;}
-        .ai-chat-header button{background:none;border:none;color:#fff;font-size:1.3rem;cursor:pointer;line-height:1;}
-        .ai-chat-body{padding:16px;height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;}
-        .ai-msg{padding:10px 14px;border-radius:12px;font-size:.85rem;line-height:1.5;max-width:85%;}
-        .ai-msg.bot{background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.2);color:#F8FAFC;align-self:flex-start;}
-        .ai-msg.user{background:linear-gradient(135deg,#2563EB,#3B82F6);color:#fff;align-self:flex-end;}
-        .ai-chat-input{padding:12px;display:flex;gap:8px;border-top:1px solid rgba(255,255,255,.08);}
-        .ai-chat-input input{flex:1;padding:10px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#fff;font-size:.85rem;outline:none;font-family:'Inter',sans-serif;}
-        .ai-chat-input button{padding:10px 14px;border-radius:8px;background:linear-gradient(135deg,#2563EB,#3B82F6);border:none;color:#fff;cursor:pointer;font-size:1rem;}
-        .ai-quick-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
-        .ai-qa-btn{padding:6px 12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--text);font-size:.75rem;cursor:pointer;transition:all .2s;}
-        .ai-qa-btn:hover{background:rgba(37,99,235,.15);border-color:var(--primary);color:#fff;}
+        #supportChatBubble { position: fixed; bottom: 100px; right: 24px; width: 320px; background: #FFFFFF; border: 1px solid var(--glass-border); border-radius: 16px; z-index: 960; box-shadow: 0 10px 30px rgba(0,0,0,0.08); font-family: 'Inter', sans-serif; overflow: hidden; }
+        .support-chat-header { padding: 14px 18px; background: var(--primary); display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: .95rem; color: #FFFFFF; }
+        .support-chat-header button { background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; line-height: 1; }
+        .support-chat-body { padding: 16px; height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #F8FAFC; }
+        .support-msg { padding: 10px 14px; border-radius: 12px; font-size: .85rem; line-height: 1.5; max-width: 85%; }
+        .support-msg.bot { background: #FFFFFF; border: 1px solid var(--glass-border); color: var(--text); align-self: flex-start; }
+        .support-msg.user { background: var(--primary); color: #fff; align-self: flex-end; }
+        .support-chat-input { padding: 12px; display: flex; gap: 8px; border-top: 1px solid var(--glass-border); background: #FFFFFF; }
+        .support-chat-input input { flex: 1; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--glass-border); background: #FFFFFF; color: var(--text); font-size: .85rem; outline: none; font-family: 'Inter', sans-serif; }
+        .support-chat-input button { padding: 10px 14px; border-radius: 8px; background: var(--primary); border: none; color: #fff; cursor: pointer; font-size: 1rem; }
+        .support-quick-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+        .support-qa-btn { padding: 6px 12px; border-radius: 12px; background: #FFFFFF; border: 1px solid var(--glass-border); color: var(--text-dim); font-size: .75rem; cursor: pointer; transition: all .2s; }
+        .support-qa-btn:hover { background: rgba(37,99,235,0.08); border-color: var(--primary); color: var(--primary); }
         `;
       document.head.appendChild(s);
     }
   }
 
   // ── DYNAMIC GLOBAL FLOATING WIDGETS INJECTION ──
-  // 1. Ensure floating AI Assistant button is present on all pages
-  if (!document.getElementById('aiAssistant')) {
-    const aiBtn = document.createElement('button');
-    aiBtn.className = 'ai-assistant';
-    aiBtn.id = 'aiAssistant';
-    aiBtn.title = 'Chat with AI Assistant';
-    aiBtn.innerHTML = `<i class="ph-fill ph-robot"></i><span class="ai-tooltip">Ask AI</span>`;
-    document.body.appendChild(aiBtn);
-    aiBtn.addEventListener('click', openAIChat);
+  // 1. Ensure floating Support Assistant button is present on all pages
+  if (!document.getElementById('supportAssistant')) {
+    const supportBtn = document.createElement('button');
+    supportBtn.className = 'support-assistant';
+    supportBtn.id = 'supportAssistant';
+    supportBtn.title = 'Chat with Support';
+    supportBtn.innerHTML = `<i class="ph-fill ph-chat-circle-dots"></i><span class="support-tooltip">Live Help</span>`;
+    document.body.appendChild(supportBtn);
+    supportBtn.addEventListener('click', openSupportChat);
   }
 
   // 2. Inject floating Request a Callback button

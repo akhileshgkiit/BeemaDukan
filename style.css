@@ -2014,8 +2014,8 @@ input:checked + .slider:before {
   border-radius: var(--radius-sm); 
 }
 
-/* AI ASSISTANT BUTTON */
-.ai-assistant { 
+/* SUPPORT ASSISTANT BUTTON */
+.support-assistant, .ai-assistant { 
   position: fixed; 
   bottom: 80px; 
   right: 24px; 
@@ -2034,11 +2034,11 @@ input:checked + .slider:before {
   align-items: center; 
   justify-content: center; 
 }
-.ai-assistant:hover { 
+.support-assistant:hover, .ai-assistant:hover { 
   transform: scale(1.05); 
   box-shadow: 0 6px 15px rgba(37,99,235,0.3); 
 }
-.ai-tooltip { 
+.support-tooltip, .ai-tooltip { 
   position: absolute; 
   right: 60px; 
   white-space: nowrap; 
@@ -2053,7 +2053,7 @@ input:checked + .slider:before {
   font-weight: 500; 
   color: #FFF;
 }
-.ai-assistant:hover .ai-tooltip { 
+.support-assistant:hover .support-tooltip, .ai-assistant:hover .ai-tooltip { 
   opacity: 1; 
 }
 
