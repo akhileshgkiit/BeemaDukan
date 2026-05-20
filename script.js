@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div>
               <span style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">${p.type}</span>
-              <h4 style="font-size: 1.05rem; margin: 2px 0 0; color: #fff; font-family: 'Manrope', sans-serif;">${p.name}</h4>
+              <h4 style="font-size: 1.05rem; margin: 2px 0 0; color: var(--text); font-family: 'Manrope', sans-serif;">${p.name}</h4>
             </div>
           </div>
           <p style="margin: 0; font-size: 0.9rem; color: #10B981; font-weight: 600;">Est. Premium: ${p.premium}</p>
@@ -867,7 +867,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </form>
           <div id="cbSuccess" style="display: none; text-align: center; padding: 10px 0;">
             <i class="ph-fill ph-check-circle" style="font-size: 2.5rem; color: #10B981; margin-bottom: 12px; display: block;"></i>
-            <h5 style="color: #fff; margin: 0 0 6px; font-size: 0.95rem;">Request Registered!</h5>
+            <h5 style="color: var(--text); margin: 0 0 6px; font-size: 0.95rem;">Request Registered!</h5>
             <p style="color: var(--text-dim); font-size: 0.8rem; margin: 0 0 10px;">Our local agent is dialling your number.</p>
             <div style="font-size: 1.2rem; font-weight: 700; color: #10B981;" id="cbTimer">15:00</div>
           </div>
