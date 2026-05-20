@@ -587,7 +587,7 @@
       <div class="section-header"><span class="section-tag">Plan Smartly</span><h2>Insurance <span class="gradient-text">Calculator</span></h2><p>Get an instant estimate. See how affordable coverage is with daily micro-installments.</p></div>
       <div class="calc-grid">
         <!-- Health Premium Calculator -->
-        <div class="calc-card glass-card">
+        <div class="calc-card glass-card" id="calc-card-health">
           <h3><i class="ph-fill ph-heartbeat"></i> Health Premium</h3>
           <div class="calc-field"><label>Age</label><input type="range" min="18" max="70" value="30" class="calc-slider" id="calcAge"><span class="calc-val" id="calcAgeVal">30</span></div>
           <div class="calc-field"><label>Family Members</label><input type="range" min="1" max="6" value="2" class="calc-slider" id="calcMembers"><span class="calc-val" id="calcMembersVal">2</span></div>
@@ -599,7 +599,7 @@
         </div>
 
         <!-- Vehicle Premium Calculator -->
-        <div class="calc-card glass-card">
+        <div class="calc-card glass-card" id="calc-card-vehicle">
           <h3><i class="ph-fill ph-car-profile"></i> Vehicle Premium</h3>
           <div class="calc-field"><label>Vehicle Value (रु Lakhs)</label><input type="range" min="2" max="50" value="8" class="calc-slider" id="vehValue"><span class="calc-val" id="vehValueVal">रु8L</span></div>
           <div class="calc-field"><label>Vehicle Age (Years)</label><input type="range" min="0" max="15" value="2" class="calc-slider" id="vehAge"><span class="calc-val" id="vehAgeVal">2</span></div>
@@ -610,7 +610,7 @@
         </div>
 
         <!-- Term Life Premium Calculator -->
-        <div class="calc-card glass-card">
+        <div class="calc-card glass-card" id="calc-card-life">
           <h3><i class="ph-fill ph-shield-heart"></i> Term Life Premium</h3>
           <div class="calc-field"><label>Your Age</label><input type="range" min="18" max="60" value="30" class="calc-slider" id="lifeAge"><span class="calc-val" id="lifeAgeVal">30</span></div>
           <div class="calc-field"><label>Cover (रु Cr)</label><input type="range" min="1" max="5" value="1" class="calc-slider" id="lifeCover"><span class="calc-val" id="lifeCoverVal">रु1Cr</span></div>

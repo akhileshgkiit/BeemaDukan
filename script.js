@@ -12,6 +12,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
+  // ── DEEP LINK CALCULATOR HIGHLIGHT ─────────────────────────
+  const urlParams = new URLSearchParams(window.location.search);
+  const calcParam = urlParams.get('calc');
+  if (calcParam) {
+    const targetCard = document.getElementById(`calc-card-${calcParam}`);
+    if (targetCard) {
+      setTimeout(() => {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetCard.classList.add('highlight-pulse');
+        setTimeout(() => {
+          targetCard.classList.remove('highlight-pulse');
+        }, 3000);
+      }, 800);
+    }
+  }
+
   // ── NAVBAR SCROLL ─────────────────────────────────────────
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
